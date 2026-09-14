@@ -53,9 +53,37 @@ npm run start
 
 ---
 
-## 5. Vercel 배포 가이드 (권장)
+## 5. Railway 배포 가이드 (클라우드 호스팅)
 
-Next.js 공식 플랫폼인 Vercel에 가장 최적화되어 있습니다:
+Railway를 통한 배포는 가장 간편하고 안정적입니다. `railway.json` 설정이 이미 프로젝트에 구성되어 있습니다.
+
+### 방법 1: Railway 대시보드 (GitHub 연동 - 가장 권장)
+1. [Railway 대시보드 (railway.com)](https://railway.com/dashboard)에 접속하여 로그인합니다.
+2. **+ New Project** 버튼을 클릭합니다.
+3. **Deploy from GitHub repo**를 선택하고 `avata200ms/16-webapp-skill` 저장소를 선택합니다.
+4. 배포된 서비스 카드의 **Variables** 탭으로 이동하여 환경 변수를 추가합니다:
+   - GEMINI_API_KEY: your_gemini_api_key_here
+5. **Settings** 탭의 **Networking** 섹션에서 **Generate Domain**을 클릭하면 공개 URL(예: `xxx.up.railway.app`)이 즉시 생성됩니다.
+
+### 방법 2: Railway CLI
+```bash
+# 1. Railway CLI 로그인
+npx @railway/cli login
+
+# 2. 프로젝트 초기화 및 연결
+npx @railway/cli init
+
+# 3. 환경변수 등록
+npx @railway/cli variables --set GEMINI_API_KEY=your_gemini_api_key_here
+
+# 4. 배포
+npx @railway/cli up
+```
+
+---
+
+## 6. Vercel 배포 가이드
+Next.js 공식 플랫폼인 Vercel에 최적화되어 있습니다:
 1. GitHub 저장소에 코드를 푸시합니다.
 2. Vercel 대시보드에서 `Import Project`를 실행합니다.
 3. 프로젝트 설정의 **Environment Variables** 항목에 `GEMINI_API_KEY`를 등록합니다.
@@ -63,7 +91,7 @@ Next.js 공식 플랫폼인 Vercel에 가장 최적화되어 있습니다:
 
 ---
 
-## 6. Docker 컨테이너 배포 가이드
+## 7. Docker 컨테이너 배포 가이드
 
 단일 컨테이너로 배포하기 위한 `Dockerfile` 예시:
 
